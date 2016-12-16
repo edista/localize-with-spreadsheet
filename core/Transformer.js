@@ -15,9 +15,9 @@ var iOSTransformer = {
         normalizedValue = normalizedValue.replace(/"/gi, '\\"');
         normalizedValue = normalizedValue.replace(/%([@df])/gi, '%$1');
         normalizedValue = normalizedValue.replace(/%s/gi, "%@");
-        normalizedValue = normalizedValue.replace(/%([0-9])$s/g,"%@");
-        normalizedValue = normalizedValue.replace(/%([0-9])$d/g,"%lu");
-        normalizedValue = normalizedValue.replace(/%([0-9])$lu/g,"%lu");
+        normalizedValue = normalizedValue.replace(/%[0-9]\$s/g,"%@");
+        normalizedValue = normalizedValue.replace(/%[0-9]\$s/g,"%lu");
+        normalizedValue = normalizedValue.replace(/%[0-9]\$s/g,"%lu");
 
         return '"' + key + '" = "' + normalizedValue + '";';
     },
