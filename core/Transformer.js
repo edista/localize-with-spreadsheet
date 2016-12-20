@@ -12,12 +12,18 @@ var iOSTransformer = {
     },
     transformKeyValue: function (key, value) {
         var normalizedValue = value.replace(/%newline%/gi, "\\n");
-        normalizedValue = normalizedValue.replace(/"/gi, '\\"');
-        normalizedValue = normalizedValue.replace(/%([@df])/gi, '%$1');
-        normalizedValue = normalizedValue.replace(/%s/gi, "%@");
-        normalizedValue = normalizedValue.replace(/%[0-9]\$s/g,"%@");
-        normalizedValue = normalizedValue.replace(/%[0-9]\$d/g,"%lu");
-        normalizedValue = normalizedValue.replace(/%[0-9]\$lu/g,"%lu");
+        if (value.length == 0) {
+            normalizedValue = "No Translation";
+        }
+        else {
+            normalizedValue = normalizedValue.replace(/"/gi, '\\"');
+            normalizedValue = normalizedValue.replace(/%([@df])/gi, '%$1');
+            normalizedValue = normalizedValue.replace(/%s/gi, "%@");
+            normalizedValue = normalizedValue.replace(/%[0-9]\$s/g,"%@");
+            normalizedValue = normalizedValue.replace(/%s/g,"%@");
+            normalizedValue = normalizedValue.replace(/%[0-9]\$d/g,"%lu");
+            normalizedValue = normalizedValue.replace(/%[0-9]\$lu/g,"%lu");
+        }
 
         return '"' + key + '" = "' + normalizedValue + '";';
     },
