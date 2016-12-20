@@ -12,8 +12,15 @@ var iOSTransformer = {
     },
     transformKeyValue: function (key, value) {
         var normalizedValue = value.replace(/%newline%/gi, "\\n");
-        if (value.length == 0) {
-            normalizedValue = "No Translation";
+
+        /*
+         * <![CDATA is android for use, do not include this on our strings
+         */
+        
+        var hasCDATA = value.indexOf("<![CDATA") !== -1;
+
+        if (value.length == 0 && hasCDATA) {
+            return '';
         }
         else {
             normalizedValue = normalizedValue.replace(/"/gi, '\\"');
