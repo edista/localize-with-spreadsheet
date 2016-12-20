@@ -19,7 +19,7 @@ var iOSTransformer = {
         
         var hasCDATA = value.indexOf("<![CDATA") !== -1;
 
-        if (value.length == 0 && hasCDATA) {
+        if (value.length == 0 || hasCDATA == true) {
             return '';
         }
         else {
