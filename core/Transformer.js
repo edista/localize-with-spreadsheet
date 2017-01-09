@@ -17,6 +17,12 @@ var iOSTransformer = {
         
         var hasCDATA = value.indexOf("<![CDATA") !== -1;
 
+        var hasQuotes = value.charAt(0) == '"' && value.charAt(value.length - 1) == '"';
+
+        if (hasQuotes) {
+            value = value.substr(1, value.length - 2);
+        }
+
         if (value.length == 0 || hasCDATA == true) {
             return '';
         }
